@@ -24,6 +24,7 @@ a {
 	justify-content: center;
 	background-color: #FFF;
 	flex: 1 0 auto;
+	flex-basis: 600px;
 }
 
 footer {
@@ -216,6 +217,7 @@ main p {
 	font-weight: 300;
 	width: fit-content;
 	margin: 1em 2em 2em 2em;
+	cursor: pointer;
 }
 
 .modal button.active {

@@ -96,10 +96,10 @@
                         </a>
                     </h3>
                     <div id="loginOptionsWrapper">
-                        <button class="active" onclick="loginWithPrivateKey();">
+                        <button class="active" id="privateKeyLoginButton" onclick="loginWithPrivateKey();">
                             Login with Private Login Key
                         </button>
-                        <button onclick="loginWithPublicKey();">
+                        <button id="publicKeyLoginButton" onclick="loginWithPublicKey();">
                             Login with Public Key
                         </button>
                     </div>
@@ -118,15 +118,15 @@
                         <label for="yourAddressField">
                             Your Address
                         </label>
-                        <input id="yourAddressField" type="text"/>
+                        <input id="yourAddressField" placeholder="Enter your address here" type="text"/>
                         <label for="viewKeyField">
                             View Key
                         </label>
-                        <input id="viewKeyField" type="text"/>
+                        <input id="viewKeyField" placeholder="Enter your view key here" type="text"/>
                         <label for="spendKeyField">
                             Spend Key
                         </label>
-                        <input id="spendKeyField" type="text"/>
+                        <input id="spendKeyField" placeholder="Enter your spend key here" type="text"/>
                     </div>
                     <button class="squareButton active" onclick="enterAccount();">
                         Enter My Account

@@ -7,10 +7,15 @@ body {
 	margin: 0px;
 	padding: 0px;
 	font-family: "Open Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-	color: #333;
+	color: #555;
 	background-color: rgb(45, 50, 67);
 	display: flex;
 	flex-direction: column;
+}
+
+a {
+	text-decoration: inherit;
+	color: #0a92cf;
 }
 
 .page {
@@ -43,7 +48,7 @@ footer {
 
 #modalOverlay {
 	display: block;
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(43, 50, 55, 0.85);
 	z-index: 9999;
 	position: absolute;
 	width: 100%;
@@ -58,11 +63,32 @@ footer {
 	width: 600px;
 	background: rgb(255, 255, 255);
 	padding: 3em;
-	border-radius: 5px;
+	border-radius: 3px;
 	margin-left: auto;
 	margin-right: auto;
 	position: relative;
-	top: 120px;
+	top: 100px;
+	box-shadow: 0px 5px 50px -20px black;
+	align-items: center;
+}
+
+#loginWrapper h2 {
+	font-size: 2em;
+	text-align: center;
+	padding: 0;
+	margin: 0 0 0.25em 0;
+}
+
+.loginOption.inactive {
+	display: none;
+}
+
+#loginWrapper h3 {
+	font-size: 1em;
+	text-align: center;
+	padding: 0;
+	margin: 0 0 2em 0;
+	font-weight: 300;
 }
 
 .closeButton {
@@ -170,6 +196,33 @@ main p {
 	text-align: center;
 }
 
+#loginOptionsWrapper {
+	display: flex;
+	flex-direction: row;
+}
+
+.squareButton {
+	border-radius: 0px !important;
+}
+
+.modal button {
+	border-radius: 2em;
+	border: 1px solid #0a92cf;
+	background-color: transparent;
+	color: #0a92cf;
+	font-size: 1em;
+	padding: 0.5em 1.5em 0.5em 1.5em;
+	text-decoration: none;
+	font-weight: 300;
+	width: fit-content;
+	margin: 1em 2em 2em 2em;
+}
+
+.modal button.active {
+	background-color: #0a92cf;
+	color: #FFF;
+}
+
 .bigButton {
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 	border-radius: 2em;
@@ -184,4 +237,27 @@ main p {
 
 .bigButton:hover {
 	background-color: #40a8d6;
+}
+
+.loginOption {
+	width: 100%;
+	padding-left: 3em;
+	padding-right: 3em;
+}
+
+input,
+select {
+	width: 100%;
+	margin: 0.25em 0 1.2em 0;
+	height: 44px;
+	padding-left: 1em;
+	border: 1px solid #0a92cf;
+	border-radius: 3px;
+	box-sizing: border-box;
+	font-family: inherit;
+}
+
+label {
+	font-weight: bold;
+	margin-bottom: 0.5em;
 }

@@ -89,23 +89,32 @@
                     <h2>
                         Login to an existing account
                     </h2>
-                    <button onclick="loginWithPrivateKey();">
-                        Login with Private Login Key
-                    </button>
-                    <button onclick="loginWithPublicKey();">
-                        Login with Public Key
-                    </button>
-                    <div id="loginWithPrivateKeyWrapper">
+                    <h3>
+                        Don't have an account?
+                        <a href="#create">
+                            Create an Arionum account
+                        </a>
+                    </h3>
+                    <div id="loginOptionsWrapper">
+                        <button class="active" onclick="loginWithPrivateKey();">
+                            Login with Private Login Key
+                        </button>
+                        <button onclick="loginWithPublicKey();">
+                            Login with Public Key
+                        </button>
+                    </div>
+                    <div class="loginOption" id="loginWithPrivateKeyWrapper">
                         <label for="privateLoginKeyField">
                             Your Private Login Key
                         </label>
-                        <input id="privateLoginKeyField" type="text"/>
+                        <input id="privateLoginKeyField" placeholder="Enter your Private Login Key here" type="text"/>
                         <label for="languageSelectorCombo">
-                            Your Private Login Key
+                            Language
                         </label>
-                        <input id="languageSelectorCombo" type="text"/>
+                        <select id="languageSelectorCombo">
+                        </select>
                     </div>
-                    <div id="loginWithPublicKeyWrapper">
+                    <div class="loginOption inactive" id="loginWithPublicKeyWrapper">
                         <label for="yourAddressField">
                             Your Address
                         </label>
@@ -119,7 +128,7 @@
                         </label>
                         <input id="spendKeyField" type="text"/>
                     </div>
-                    <button onclick="enterAccount();">
+                    <button class="squareButton active" onclick="enterAccount();">
                         Enter My Account
                     </button>
                 </div>

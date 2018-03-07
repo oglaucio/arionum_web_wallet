@@ -8,10 +8,6 @@
         </script>
         <script src="js/mnemonic.js" type="text/javascript">
         </script>
-        <script src="js/keygeneration.js" type="text/javascript">
-        </script>
-        <script src="js/wallet.js" type="text/javascript">
-        </script>
         <link href="css/style.css" rel="stylesheet">
         </link>
     </head>
@@ -85,6 +81,11 @@
         <section class="modal inactive" id="loginModal">
             <div id="modalOverlay">
                 <div id="loginWrapper">
+                    <span class="closeButton">
+                        <a href="#" onclick="closeLoginModal();">
+                            X
+                        </a>
+                    </span>
                     <h2>
                         Login to an existing account
                     </h2>
@@ -138,13 +139,11 @@
                 Terms of Use
             </div>
         </footer>
-        <script>
-            var navItemLogin = document.getElementById('navItemLogin');
-				var loginModal = document.getElementById('loginModal');
-				navItemLogin.addEventListener('click', function() {
-					console.log('clicked');
-					loginModal.classList.remove('inactive');
-				});
+        <script src="js/keygeneration.js" type="text/javascript">
+        </script>
+        <script src="js/wallet.js" type="text/javascript">
+        </script>
+        <script src="js/main.js" type="text/javascript">
         </script>
     </body>
 </html>

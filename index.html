@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Arionum Web Wallet</title>
+		<script type="text/javascript" src="js/elliptic/dist/elliptic.min.js"></script>
+		<script type="text/javascript" src="js/wallet.js"></script>
+		<style type="text/css">
+			html, body {
+				height: 100%;
+			}
+
+			body {
+			    margin: 0px;
+			    padding: 0px;
+			    font-family: "Open Sans","Segoe UI","Helvetica Neue",Arial,sans-serif;
+			    color: #000;
+			    background-color: rgb(45,50,67);
+			    display: flex;
+			    flex-direction: column;
+			}
+
+			.page {
+				display: flex;
+			    flex-direction: row;
+			    justify-content: center;
+			    background-color: #FFF;
+			    flex:1 0 auto;
+			}
+
+			footer {
+			    color: #FFF;
+			    display: flex;
+			    justify-content: space-around;
+			    background:rgba(0,0,0,0.2);
+			    height: 80px;
+    			align-items: center;
+    			font-size: 0.75em;
+    			opacity:0.4;
+			}
+
+			#pageHeader, footer {
+				flex-shrink: 0;
+			}
+
+			.page.inactive {
+				display:none;
+			}
+
+			#modalOverlay {
+				display: block;
+				background-color: rgba(0,0,0,0.5);
+				z-index:9999;
+				position: absolute;
+				width: 100%;
+				height:100%;
+				top:0px;
+				left:0px;
+			}
+
+			.modal.inactive {
+				display:none;
+			}
+
+			#logo {
+				height:90px;
+				width:auto;
+			}
+
+			#pageHeader, #pageFooter {
+				flex:none;
+			}
+
+			#pageHeader {
+			    display: flex;
+			    align-items: center;
+			    height:120px;
+			}
+			#pageHeader header {
+				display: flex;
+				flex-basis: 10%;
+			}
+
+			#pageHeader nav {
+			    display: flex;
+			    flex-basis: 90%;
+			    padding: 1em;
+			    justify-content: flex-end;
+			}
+
+			nav a {
+			    display: flex;
+			    flex-basis: auto;
+			    align-items: flex-start;
+			    padding: 0.25em 2em 0.25em 2em;
+			    margin: 1em;
+			    text-decoration: none;
+			    font-weight: 600;
+			    color: #FFF;
+			    text-transform: uppercase;
+			    font-size: 0.85em;
+			    letter-spacing: 0.1em;
+			    transition: .2s;
+			    opacity: 0.6;
+			}
+
+			nav a:hover {
+				opacity:1;
+			}
+
+			a.outline {
+				border: 2px solid #0a92cf;
+			    border-radius: 1em;
+			    color: #0a92cf;
+			}
+
+			a.outline:hover {
+				box-shadow: 0 2px 10px rgba(15,172,243,0.4);
+				background-color: #0a92cf;
+				color:white;
+			}
+
+			header button:hover {
+    			box-shadow: 0 2px 10px rgba(15,172,243,0.4);
+			}
+
+			main {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+			}
+
+			main h1 {
+				font-size: 4em;
+    			text-align: center;
+    			margin:0px;
+			}
+
+			main p {
+				text-align: center;
+			}
+
+			.bigButton {
+				box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+			    border-radius: 2em;
+				background-color: #0a92cf;
+				color:#FFF;
+				font-size: 1.1em;
+				padding:0.5em 5em 0.5em 5em;
+				text-decoration: none;
+				font-weight: 600;
+				letter-spacing: 0.05em;
+			}
+
+			.bigButton:hover {
+				background-color: #40a8d6;
+			}
+
+			#modal
+
+		</style>
+	</head>
+	<body>
+			<section id="pageHeader">
+				<header>
+						<figure>
+							<a href="#homePage"><img src="https://www.arionum.com/assets/aro.png" id="logo"></a>
+						</figure>
+				</header>
+				<nav>
+					<a href="#create">Create New Account</a>
+					<a href="#support">Support</a>
+					<a href="#" id="navItemLogin" class="outline">Log In</a>
+				</nav>
+			</section>
+			<section id="homePage"  class="page">
+				<main>
+					<h1>The Simplest Way to<br>Use Arionum</h1>
+					<p>Send and receive Arionum safely and securely, anywhere and any time</p>
+					<a href="#create" class="bigButton">Create An Account</a>
+				</main>
+			</section>
+			<section id="supportPage" class="page inactive">
+				<main>
+					Support Content
+				</main>
+			</section>
+			<section id="newAccountPage" class="page inactive">
+				<main>
+					Create Account Content
+				</main>
+			</section>
+			<section id="walletOverviewPage" class="page inactive">
+				<main>
+					Wallet Overview Content
+				</main>
+			</section>
+			<section id="walletTransactionsPage" class="page inactive">
+				<main>
+					Wallet Transactions Content
+				</main>
+			</section>
+			<section id="walletSendPage" class="page inactive">
+				<main>
+					Wallet Send Content
+				</main>
+			</section>
+			<section id="walletReceivePage" class="page inactive">
+				<main>
+					Wallet Receive Content
+				</main>
+			</section>
+			<section id="loginModal" class="modal inactive">
+				<div id="modalOverlay">
+					<div id="loginWrapper">
+						<h2>Login to an existing account</h2>
+						<button onClick="loginWithPrivateKey();">Login with Private Login Key</button>
+						<button onClick="loginWithPublicKey();">Login with Public Key</button>
+						<div id="loginWithPrivateKeyWrapper">
+							<label for="privateLoginKeyField">Your Private Login Key</label>
+							<input type="text" id="privateLoginKeyField"></input>
+							<label for="languageSelectorCombo">Your Private Login Key</label>
+							<input type="text" id="languageSelectorCombo"></input>
+						</div>
+						<div id="loginWithPublicKeyWrapper">
+							<label for="yourAddressField">Your Address</label>
+							<input type="text" id="yourAddressField"></input>
+							<label for="viewKeyField">View Key</label>
+							<input type="text" id="viewKeyField"></input>
+							<label for="spendKeyField">Spend Key</label>
+							<input type="text" id="spendKeyField"></input>
+						</div>
+						<button onClick="enterAccount();">Enter My Account</button>
+					</div>
+				</div>
+			</section>
+			<footer>
+				<div>Copyright, Arionum 2018</div>
+				<div>Social Media Links</div>
+				<div>Privacy Policy</div>
+				<div>Terms of Use</div>
+			</footer>
+
+			<script>
+				var navItemLogin = document.getElementById('navItemLogin');
+				var loginModal = document.getElementById('loginModal');
+				navItemLogin.addEventListener('click', function() {
+					console.log('clicked');
+					loginModal.classList.remove('inactive');
+				});
+			</script>
+	</body>
+</html>

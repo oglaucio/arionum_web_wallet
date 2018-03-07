@@ -20,19 +20,18 @@ function createMnemonic() {
 	const mnemonic = new Mnemonic(256);
 	const mnemonicWords = mnemonic.toWords().join(' ');
 	console.log('New mnemonic', mnemonic, 'to words:', mnemonic.toWords());
-	document.getElementById('passphrase').value = mnemonicWords;
+	// document.getElementById('passphrase').value = mnemonicWords;
 }
 
 function confirmPassphrase() {
-	var generatedPassphraseField = document.getElementById('passphrase');
-	var confirmPassphraseField = document.getElementById('passphraseConfirm');
-	var generatedPassphrase = generatedPassphraseField.value;
-	var confirmPassphrase = confirmPassphraseField.value;
-	var confirmPassphraseArray = confirmPassphrase.split(',');
-	if (generatedPassphrase == confirmPassphrase) {
-		console.log('Passphrase matches!');
-		createNewKey(confirmPassphraseArray);
-	} else {
-		throw 'Does not match!'
-	}
+	// var confirmPassphraseField = document.getElementById('passphraseConfirm');
+	// var generatedPassphrase = generatedPassphraseField.value;
+	// var confirmPassphrase = confirmPassphraseField.value;
+	// var confirmPassphraseArray = confirmPassphrase.split(',');
+	// if (generatedPassphrase == confirmPassphrase) {
+	// 	console.log('Passphrase matches!');
+	// 	createNewKey(confirmPassphraseArray);
+	// } else {
+	// 	throw 'Does not match!'
+	// }	var generatedPassphraseField = document.getElementById('passphrase');
 }

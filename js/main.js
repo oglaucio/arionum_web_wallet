@@ -1,9 +1,7 @@
-var navItemLogin = document.getElementById('navItemLogin');
-var loginModal = document.getElementById('loginModal');
-navItemLogin.addEventListener('click', function() {
-	console.log('clicked');
-	loginModal.classList.remove('inactive');
-});
+function openLoginModal() {
+	var modal = document.getElementById('loginModal');
+	modal.classList.remove('inactive');
+}
 
 function closeLoginModal() {
 	var modal = document.getElementById('loginModal');
@@ -30,4 +28,20 @@ function loginWithPublicKey() {
 	privateOptionButton.classList.remove('active');
 	publicKeyLoginWrapper.classList.remove('inactive');
 	publicOptionButton.classList.add('active');
+}
+
+function togglePageInactive(page) {
+	page.classList.add('inactive');
+}
+
+function togglePageActive(targetPage) {
+	window.allPages = document.getElementsByClassName('page');
+	for (let i = 0; i < allPages.length; i++) {
+		togglePageInactive(allPages[i]);
+	}
+	targetPage.classList.remove('inactive');
+}
+
+function openPage(page) {
+	togglePageActive(document.getElementById(page));
 }

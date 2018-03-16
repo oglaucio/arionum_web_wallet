@@ -15,19 +15,19 @@
         <section id="pageHeader">
             <header>
                 <figure>
-                    <a href="#homePage">
+                    <a href="#" onclick="openPage('homePage');">
                         <img id="logo" src="https://www.arionum.com/assets/aro.png"/>
                     </a>
                 </figure>
             </header>
             <nav>
-                <a href="#create">
+                <a href="#" onclick="openPage('newAccountPage');">
                     Create New Account
                 </a>
-                <a href="#support">
+                <a href="#" onclick="openPage('supportPage');">
                     Support
                 </a>
-                <a class="outline" href="#" id="navItemLogin">
+                <a class="outline" href="#" id="navItemLogin" onclick="openLoginModal();">
                     Log In
                 </a>
             </nav>
@@ -43,7 +43,7 @@
                 <p>
                     Send and receive Arionum safely and securely, anywhere and any time
                 </p>
-                <a class="bigButton" href="#create">
+                <a class="bigButton" href="#" onclick="openPage('newAccountPage');">
                     Create An Account
                 </a>
             </main>
@@ -54,8 +54,46 @@
             </main>
         </section>
         <section class="page inactive" id="newAccountPage">
+            <h2>
+                That was simple! Your account has been created.
+            </h2>
             <main>
-                Create Account Content
+                <div class="boxes">
+                    <h3>
+                        Disclaimer 1
+                    </h3>
+                    <p>
+                        Content here
+                    </p>
+                </div>
+                <div class="boxes">
+                    <h3>
+                        Take Note of your Private Login Key!
+                    </h3>
+                    <p>
+                        Content here
+                    </p>
+                </div>
+                <div class="boxes">
+                    <h3>
+                        Your Private Login Key
+                    </h3>
+                    <p>
+                        Content here
+                    </p>
+                </div>
+                <div class="boxes">
+                    <h3>
+                        Confirm you Private Login Key
+                    </h3>
+                    <p>
+                        <input id="privateLoginKeyConfirmationField" placeholder="Type your Private Login Key out here to confirm it" type="text">
+                        </input>
+                        <button class="squareButton active">
+                            I've written down my Private Login Key, log me in!
+                        </button>
+                    </p>
+                </div>
             </main>
         </section>
         <section class="page inactive" id="walletOverviewPage">
@@ -91,7 +129,7 @@
                     </h2>
                     <h3>
                         Don't have an account?
-                        <a href="#create">
+                        <a href="#">
                             Create an Arionum account
                         </a>
                     </h3>

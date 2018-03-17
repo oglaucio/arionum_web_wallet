@@ -20,18 +20,26 @@ function createMnemonic() {
 	const mnemonic = new Mnemonic(256);
 	const mnemonicWords = mnemonic.toWords().join(' ');
 	console.log('New mnemonic', mnemonic, 'to words:', mnemonic.toWords());
-	// document.getElementById('passphrase').value = mnemonicWords;
+	document.getElementById('privateLoginKey').textContent = mnemonicWords;
 }
 
 function confirmPassphrase() {
-	// var confirmPassphraseField = document.getElementById('passphraseConfirm');
-	// var generatedPassphrase = generatedPassphraseField.value;
-	// var confirmPassphrase = confirmPassphraseField.value;
-	// var confirmPassphraseArray = confirmPassphrase.split(',');
-	// if (generatedPassphrase == confirmPassphrase) {
-	// 	console.log('Passphrase matches!');
-	// 	createNewKey(confirmPassphraseArray);
-	// } else {
-	// 	throw 'Does not match!'
-	// }	var generatedPassphraseField = document.getElementById('passphrase');
+	var generatedPassphraseField = document.getElementById('privateLoginKey');
+	var confirmPassphraseField = document.getElementById('privateLoginKeyConfirmationField');
+	var generatedPassphrase = generatedPassphraseField.textContent;
+	var confirmPassphrase = confirmPassphraseField.value;
+	var confirmPassphraseArray = confirmPassphrase.split(',');
+	var passphraseConfirmationError = document.getElementById('passphraseConfirmationError');
+	console.log('Generated Passphrase', generatedPassphrase);
+	console.log('Confirm passphrase array', confirmPassphraseArray);
+	if (generatedPassphrase == confirmPassphrase) {
+		console.log('Passphrase matches!');
+		passphraseConfirmationError.classList.add('inactive');
+		createNewKey(confirmPassphraseArray);
+		confirmPassphraseField.value = '';
+		loginSuccessful();
+	} else {
+		console.warn('Passphrase Does not match!');
+		passphraseConfirmationError.classList.remove('inactive');
+	}
 }

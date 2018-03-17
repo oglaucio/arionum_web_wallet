@@ -8,10 +8,9 @@
         </script>
         <script src="js/mnemonic.js" type="text/javascript">
         </script>
-        <link href="css/style.css" rel="stylesheet">
-        </link>
+        <link href="css/style.css" rel="stylesheet"/>
     </head>
-    <body onload="createMnemonic();">
+    <body>
         <section id="pageHeader">
             <header>
                 <figure>
@@ -21,156 +20,218 @@
                 </figure>
             </header>
             <nav>
-                <a href="#" onclick="openPage('newAccountPage');">
+                <a href="#" id="newAccountLink" onclick="createMnemonic();openPage('newAccountPage');">
                     Create New Account
                 </a>
+                <div class="inactive" id="accountMenu">
+                    <a class="outline" href="#" onclick="toggleAccountSubMenu();">
+                        Account
+                    </a>
+                    <ul class="inactive">
+                        <li>
+                            <a href="#">
+                                Review Login Key
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Account Details
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <a href="#" onclick="openPage('supportPage');">
                     Support
                 </a>
                 <a class="outline" href="#" id="navItemLogin" onclick="openLoginModal();">
                     Log In
                 </a>
+                <a class="outline inactive" href="#" id="navItemLogout" onclick="logOut();">
+                    Log Out
+                </a>
             </nav>
         </section>
-        <section class="page" id="homePage">
-            <main>
-                <h1>
-                    The Simplest Way to
-                    <br>
+        <section id="pagesWrapper">
+            <section class="page" id="homePage">
+                <div class="main">
+                    <h1>
+                        The Simplest Way to
+                        <br/>
                         Use Arionum
-                    </br>
-                </h1>
-                <p>
-                    Send and receive Arionum safely and securely, anywhere and any time
-                </p>
-                <a class="bigButton" href="#" onclick="openPage('newAccountPage');">
-                    Create An Account
-                </a>
-            </main>
-        </section>
-        <section class="page inactive" id="supportPage">
-            <main>
-                Support Content
-            </main>
-        </section>
-        <section class="page inactive" id="newAccountPage">
-            <h2>
-                That was simple! Your account has been created.
-            </h2>
-            <main>
-                <div class="boxes">
-                    <h3>
-                        Disclaimer 1
-                    </h3>
+                        <br/>
+                    </h1>
                     <p>
-                        Content here
+                        Send and receive Arionum safely and securely, anywhere and any time
                     </p>
+                    <a class="bigButton" href="#" onclick="createMnemonic();openPage('newAccountPage');">
+                        Create An Account
+                    </a>
                 </div>
-                <div class="boxes">
-                    <h3>
-                        Take Note of your Private Login Key!
-                    </h3>
-                    <p>
-                        Content here
-                    </p>
+            </section>
+            <section class="page inactive" id="supportPage">
+                <div class="main">
+                    Support Content
                 </div>
-                <div class="boxes">
-                    <h3>
-                        Your Private Login Key
-                    </h3>
-                    <p>
-                        Content here
-                    </p>
-                </div>
-                <div class="boxes">
-                    <h3>
-                        Confirm you Private Login Key
-                    </h3>
-                    <p>
-                        <input id="privateLoginKeyConfirmationField" placeholder="Type your Private Login Key out here to confirm it" type="text">
-                        </input>
-                        <button class="squareButton active">
-                            I've written down my Private Login Key, log me in!
-                        </button>
-                    </p>
-                </div>
-            </main>
-        </section>
-        <section class="page inactive" id="walletOverviewPage">
-            <main>
-                Wallet Overview Content
-            </main>
-        </section>
-        <section class="page inactive" id="walletTransactionsPage">
-            <main>
-                Wallet Transactions Content
-            </main>
-        </section>
-        <section class="page inactive" id="walletSendPage">
-            <main>
-                Wallet Send Content
-            </main>
-        </section>
-        <section class="page inactive" id="walletReceivePage">
-            <main>
-                Wallet Receive Content
-            </main>
-        </section>
-        <section class="modal inactive" id="loginModal">
-            <div id="modalOverlay">
-                <div id="loginWrapper">
-                    <span class="closeButton">
-                        <a href="#" onclick="closeLoginModal();">
-                            X
-                        </a>
-                    </span>
-                    <h2>
-                        Login to an existing account
-                    </h2>
-                    <h3>
-                        Don't have an account?
-                        <a href="#">
-                            Create an Arionum account
-                        </a>
-                    </h3>
-                    <div id="loginOptionsWrapper">
-                        <button class="active" id="privateKeyLoginButton" onclick="loginWithPrivateKey();">
-                            Login with Private Login Key
-                        </button>
-                        <button id="publicKeyLoginButton" onclick="loginWithPublicKey();">
-                            Login with Public Key
-                        </button>
+            </section>
+            <section class="page inactive" id="newAccountPage">
+                <h2>
+                    That was simple! Your account has been created.
+                </h2>
+                <div class="main">
+                    <div class="boxes">
+                        <h3>
+                            Disclaimer
+                        </h3>
+                        <p>
+                            MyArionum is a web-based interface that allows you to use
+                    Arionum without running a full Arionum node. However, because this
+                    convenience comes at a cost: it is extremely difficult for MyArionum
+                    to securely deliver its code to your browser. This means that there
+                    is considerable risk in using MyArionum for large amounts!
+                        </p>
+                        <p>
+                            It is recommended that you treat MyArionum as you would treat
+                    your actual wallet, and not store very large amounts in it. For
+                    long-term storage of Arionum you should create a cold wallet using
+                    Arionum Address or similar.
+                        </p>
                     </div>
-                    <div class="loginOption" id="loginWithPrivateKeyWrapper">
-                        <label for="privateLoginKeyField">
+                    <div class="boxes">
+                        <h3>
+                            Take Note of your Private Login Key!
+                        </h3>
+                        <p>
+                            Below this you will find your thirteen word "Private Login
+                    Key". Keeping this secure and private is very important, as it is
+                    the only way that you will be able to login to your MyArionum
+                    account. As we don't store your private login key on the server
+                    there is no way to recover it if it is lost! Your private login key
+                    can also never be changed, and if it is stolen or otherwise
+                    compromised, you will have to move your funds to a new account with
+                    a new private login key. Therefore, it is best that you backup your
+                    private login key by writing it down, perhaps obscuring it as part
+                    of a poem or letter, and storing it in multiple safe and secure
+                    places.
+                        </p>
+                    </div>
+                    <div class="boxes">
+                        <h3>
                             Your Private Login Key
-                        </label>
-                        <input id="privateLoginKeyField" placeholder="Enter your Private Login Key here" type="text"/>
-                        <label for="languageSelectorCombo">
-                            Language
-                        </label>
-                        <select id="languageSelectorCombo">
-                        </select>
+                        </h3>
+                        <p id="privateLoginKey">
+                        </p>
                     </div>
-                    <div class="loginOption inactive" id="loginWithPublicKeyWrapper">
-                        <label for="yourAddressField">
-                            Your Address
-                        </label>
-                        <input id="yourAddressField" placeholder="Enter your address here" type="text"/>
-                        <label for="viewKeyField">
-                            View Key
-                        </label>
-                        <input id="viewKeyField" placeholder="Enter your view key here" type="text"/>
-                        <label for="spendKeyField">
-                            Spend Key
-                        </label>
-                        <input id="spendKeyField" placeholder="Enter your spend key here" type="text"/>
+                    <div class="boxes">
+                        <h3>
+                            Confirm you Private Login Key
+                        </h3>
+                        <p>
+                            <input id="privateLoginKeyConfirmationField" placeholder="Type your Private Login Key out here to confirm it" type="text"/>
+                            <button class="squareButton active" onclick="confirmPassphrase();">
+                                I've written down my Private Login Key, log me in!
+                            </button>
+                            <div class="errorMessage inactive" id="passphraseConfirmationError">
+                                Private login key does not match
+                            </div>
+                        </p>
                     </div>
-                    <button class="squareButton active" onclick="enterAccount();">
-                        Enter My Account
-                    </button>
                 </div>
-            </div>
+            </section>
+            <section class="inactive" id="walletMenu">
+                <a href="#" id="overviewMenuItem" onclick="openPage('walletOverviewPage');activateMenuItem('overviewMenuItem');">
+                    Overview
+                </a>
+                <a href="#" id="transactionsMenuItem" onclick="openPage('walletTransactionsPage');activateMenuItem('transactionsMenuItem');">
+                    Transactions
+                </a>
+                <a href="#" id="sendMenuItem" onclick="openPage('walletSendPage');activateMenuItem('sendMenuItem');">
+                    Send
+                </a>
+                <a href="#" id="receiveMenuItem" onclick="openPage('walletReceivePage');activateMenuItem('receiveMenuItem');">
+                    Receive
+                </a>
+            </section>
+            <section class="page inactive" id="walletOverviewPage">
+                <div class="main">
+                    Wallet Overview Content
+                </div>
+            </section>
+            <section class="page inactive" id="walletTransactionsPage">
+                <div class="main">
+                    Wallet Transactions Content
+                </div>
+            </section>
+            <section class="page inactive" id="walletSendPage">
+                <div class="main">
+                    Wallet Send Content
+                </div>
+            </section>
+            <section class="page inactive" id="walletReceivePage">
+                <div class="main">
+                    Wallet Receive Content
+                </div>
+            </section>
+            <section class="modal inactive" id="loginModal">
+                <div id="modalOverlay">
+                    <div id="loginWrapper">
+                        <span class="closeButton">
+                            <a href="#" onclick="closeLoginModal();">
+                                X
+                            </a>
+                        </span>
+                        <h2>
+                            Login to an existing account
+                        </h2>
+                        <h3>
+                            Don't have an account?
+                            <a href="#">
+                                Create an Arionum account
+                            </a>
+                        </h3>
+                        <div id="loginOptionsWrapper">
+                            <button class="active" id="privateKeyLoginButton" onclick="loginWithPrivateKey();">
+                                Login with Private Login Key
+                            </button>
+                            <button id="publicKeyLoginButton" onclick="loginWithPublicKey();">
+                                Login with Public Key
+                            </button>
+                        </div>
+                        <div class="loginOption" id="loginWithPrivateKeyWrapper">
+                            <label for="privateLoginKeyField">
+                                Your Private Login Key
+                            </label>
+                            <input id="privateLoginKeyField" placeholder="Enter your Private Login Key here" type="text"/>
+                            <label for="languageSelectorCombo">
+                                Language
+                            </label>
+                            <select id="languageSelectorCombo">
+                                <option selected="" value="">
+                                </option>
+                                <option value="english">
+                                    English
+                                </option>
+                            </select>
+                        </div>
+                        <div class="loginOption inactive" id="loginWithPublicKeyWrapper">
+                            <label for="yourAddressField">
+                                Your Address
+                            </label>
+                            <input id="yourAddressField" placeholder="Enter your address here" type="text"/>
+                            <label for="viewKeyField">
+                                View Key
+                            </label>
+                            <input id="viewKeyField" placeholder="Enter your view key here" type="text"/>
+                            <label for="spendKeyField">
+                                Spend Key
+                            </label>
+                            <input id="spendKeyField" placeholder="Enter your spend key here" type="text"/>
+                        </div>
+                        <button class="squareButton active" onclick="enterAccount();">
+                            Enter My Account
+                        </button>
+                    </div>
+                </div>
+            </section>
         </section>
         <footer>
             <div>
@@ -180,10 +241,14 @@
                 Social Media Links
             </div>
             <div>
-                Privacy Policy
+                <a href="#">
+                    Privacy Policy
+                </a>
             </div>
             <div>
-                Terms of Use
+                <a href="#">
+                    Terms of Use
+                </a>
             </div>
         </footer>
         <script src="js/keygeneration.js" type="text/javascript">

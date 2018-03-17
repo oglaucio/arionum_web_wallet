@@ -43,5 +43,76 @@ function togglePageActive(targetPage) {
 }
 
 function openPage(page) {
+	window.scrollTo(0, 0);
 	togglePageActive(document.getElementById(page));
+}
+
+function loginSuccessful() {
+	window.scrollTo(0, 0);
+	var accountMenu = document.getElementById('accountMenu');
+	var newAccountLink = document.getElementById('newAccountLink');
+	var loginButton = document.getElementById('navItemLogin');
+	var loginOut = document.getElementById('navItemLogout');
+	var walletMenu = document.getElementById('walletMenu');
+	var logo = document.getElementById('logo');
+	var logoLink = logo.parentElement;
+	accountMenu.classList.remove('inactive');
+	loginOut.classList.remove('inactive');
+	newAccountLink.classList.add('inactive');
+	loginButton.classList.add('inactive');
+	walletMenu.classList.remove('inactive');
+	logoLink.classList.add('disabledLink');
+	openPage('walletOverviewPage');
+	activateMenuItem('overviewMenuItem');
+}
+
+function logOut() {
+	var accountMenu = document.getElementById('accountMenu');
+	var newAccountLink = document.getElementById('newAccountLink');
+	var loginButton = document.getElementById('navItemLogin');
+	var loginOut = document.getElementById('navItemLogout');
+	var walletMenu = document.getElementById('walletMenu');
+	var logo = document.getElementById('logo');
+	var logoLink = logo.parentElement;
+	accountMenu.classList.add('inactive');
+	loginOut.classList.add('inactive');
+	newAccountLink.classList.remove('inactive');
+	loginButton.classList.remove('inactive');
+	walletMenu.classList.add('inactive');
+	logoLink.classList.remove('disabledLink');
+	openPage('homePage');
+}
+
+function showAccountSubMenu() {
+	var accountMenu = document.getElementById('accountMenu');
+	var accountSubMenu = accountMenu.querySelector('ul');
+	accountSubMenu.classList.remove('inactive');
+	document.addEventListener('click', hideAccountSubMenu, true);
+}
+
+function hideAccountSubMenu() {
+	var accountMenu = document.getElementById('accountMenu');
+	var accountSubMenu = accountMenu.querySelector('ul');
+	accountSubMenu.classList.add('inactive');
+	document.removeEventListener('click', hideAccountSubMenu, true);
+}
+
+function toggleAccountSubMenu() {
+	var accountMenu = document.getElementById('accountMenu');
+	var accountSubMenu = accountMenu.querySelector('ul');
+	if (accountSubMenu.classList.contains('inactive') === true) {
+		showAccountSubMenu();
+	} else {
+		hideAccountSubMenu();
+	}
+}
+
+function activateMenuItem(itemID) {
+	var walletMenu = document.getElementById('walletMenu');
+	var menuItems = walletMenu.querySelectorAll('a');
+	for (let i = 0; i < menuItems.length; i++) {
+		menuItems[i].classList.remove('active');
+	}
+	var targetItem = document.getElementById(itemID);
+	targetItem.classList.add('active');
 }
